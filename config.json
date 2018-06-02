@@ -27,7 +27,7 @@
 	},
 	"branding": {
 		"type": "text",
-		"content": "<div style='font-size: 1.2em; padding-left: 25px;'><i class='fa fa-wifi' aria-hidden='true' style='font-size: 2.5em;'></i> <b style='font-size: 2em; padding-left: 15px;'>photobooth_A&Q</b><br /><p>Connectez-vous au wifi, allez à l'adresse <b style='padding: 0 5px;'>photobooth.app</b> et vous pourrez télécharger les photos !</p></div>",
+		"content": "<div style='font-size: 1.2em; padding-left: 25px;'><i class='fa fa-wifi' aria-hidden='true' style='font-size: 2.5em;'></i> <b style='font-size: 2em; padding-left: 15px;'>photoboothAetQ</b><br /><p>Connectez-vous au wifi, allez à l'adresse <b style='padding: 0 5px;'>photobooth.app</b> et vous pourrez télécharger les photos !</p></div>",
 		"position": "bottomleft"
 	}
 }
