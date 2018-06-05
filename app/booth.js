@@ -72,6 +72,14 @@ if (utils.getConfig().init.useGPIO !== undefined ? utils.getConfig().init.useGPI
     // at the same time, make sure this is also so for
     // your code.
   });
+
+  gpiop.setup(18, gpio.DIR_OUT)
+    .then(() => {
+        return gpiop.write(18, true)
+    })
+    .catch((err) => {
+        console.log('Error: ', err.toString())
+    });
 }
 
 const countdownLength = (typeof utils.getConfig().countdownLength == 'number') ? utils.getConfig().countdownLength : 5;
