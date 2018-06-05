@@ -40,6 +40,8 @@ import slideshow from "./slideshow.js";
 
 import webApp from './webapp_server.js';
 
+var gpio = require('rpi-gpio');
+
 camera.initialize(function( res, msg, err) {
   if (!res) {
     console.error('camera:', msg, err);
@@ -63,9 +65,9 @@ $( "body" ).click(function() {
  */
 if (utils.getConfig().init.useGPIO !== undefined ? utils.getConfig().init.useGPIO : true) {
   console.log('GPIO usage activated');
-  var gpio = require('rpi-gpio');
   gpio.setMode(gpio.MODE_BCM);
   gpio.setup(3, gpio.DIR_IN, gpio.EDGE_BOTH);
+  gpio.setup(18, gpio.DIR_OUT);
   gpio.on('change', function(channel, value) {
     if (channel == 3 && !value) trigger();
     // NOTE: takePhoto() is secure to don't run twice 
@@ -73,13 +75,14 @@ if (utils.getConfig().init.useGPIO !== undefined ? utils.getConfig().init.useGPI
     // your code.
   });
 
-  gpiop.setup(18, gpio.DIR_OUT)
-    .then(() => {
-        return gpiop.write(18, true)
-    })
-    .catch((err) => {
-        console.log('Error: ', err.toString())
-    });
+  setInterval(blinkLed, 1000);
+}
+
+var ledOn = false;
+function blinkLed()
+{
+  gpio.write(18, ledOn);
+  ledOn = !ledOn;
 }
 
 const countdownLength = (typeof utils.getConfig().countdownLength == 'number') ? utils.getConfig().countdownLength : 5;
