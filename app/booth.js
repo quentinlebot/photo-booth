@@ -74,15 +74,25 @@ if (utils.getConfig().init.useGPIO !== undefined ? utils.getConfig().init.useGPI
     // at the same time, make sure this is also so for
     // your code.
   });
-
-  setInterval(blinkLed, 1000);
+  setInterval(HeartBeat, 1000);
 }
 
-var ledOn = false;
-function blinkLed()
+function HeartBeat()
 {
-  gpio.write(18, ledOn);
-  ledOn = !ledOn;
+  function ledOn()
+  {
+    gpio.write(18, true);
+  }
+
+  function ledOff()
+  {
+    gpio.write(18, false);
+  }
+
+  ledOn();
+  setTimeout(ledOff, 150);
+  setTimeout(ledOn, 300);
+  setTimeout(ledOff, 450);
 }
 
 const countdownLength = (typeof utils.getConfig().countdownLength == 'number') ? utils.getConfig().countdownLength : 5;
